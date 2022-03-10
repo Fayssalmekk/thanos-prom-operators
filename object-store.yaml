@@ -1,0 +1,8 @@
+type: S3
+config:
+  endpoint: "s3.us-east-2.amazonaws.com"
+  bucket: "fayssal2"
+  region: "us-east-2"
+  access_key: "AKIAYPIWJPWJ4A3AZVWD"
+  secret_key: "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"
+  insecure: true

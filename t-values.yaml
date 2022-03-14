@@ -75,8 +75,6 @@ objstoreConfig: |
     bucket: fayssal2
     region: us-east-2
     endpoint: s3.us-east-2.amazonaws.com
-    access_key: "AKIAYPIWJPWJ4A3AZVWD"
-    secret_key: "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"
     insecure: true
 
 ## @param indexCacheConfig The [index cache configuration](https://thanos.io/tip/components/store.md/)

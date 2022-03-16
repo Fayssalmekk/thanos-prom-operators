@@ -4,20 +4,20 @@
 
   tasks:
 
-     - name: add Prometheus and Thanos repositories
-       shell: helm repo add prometheus-community https://prometheus-community.github.io/helm-charts& helm repo add bitnami https://charts.bitnami.com/bitnami & helm repo add stable "https://charts.helm.sh/stable" &  helm repo update
+     - name: adding Prometheus and Thanos helm repositories
+       shell: helm repo add prometheus-community https://prometheus-community.github.io/helm-charts& helm repo add bitnami https://charts.bitnami.com/bitnami & helm repo add stable "https://charts.helm.sh/stable" 
 
-     - name: create namespace
+     - name: create namespace "monitoring"
        shell: kubectl create namespace monitoring
        ignore_errors: yes 
      
-     - name: create secret
+     - name: create thanos store secret
        shell: kubectl create secret generic thanos --from-file=object-store.yaml="{{ lookup('env','PWD') }}/object-store.yaml" -n monitoring
-       ignore_errors: yes
+      
 
-     - name: deploy prometheus
+     - name: deploy prometheus with helm
        shell: helm install -f  "{{ lookup('env','PWD') }}/values.yaml" prometheus prometheus-community/kube-prometheus-stack -n monitoring
 
-     - name: dploy thanos
+     - name: dploy thanos with helm 
        shell: helm install thanos bitnami/thanos -f "{{ lookup('env','PWD') }}/t-values.yaml" -n monitoring
 
